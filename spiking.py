@@ -3,6 +3,7 @@ import numpy.random as rnd
 
 class Net:
 
+	groupCount = 3
 	neuronCount = 10
 	synapsisCount = 20
 
@@ -15,6 +16,8 @@ class Net:
 		self.tresholds = rnd.random_sample(self.neuronCount)
 		# self.values = np.zeros(self.neuronCount)
 		self.values = rnd.random_sample(self.neuronCount)
+		
+		self.groups = rnd.randint(self.groupCount, size = self.neuronCount)
 
 	
 	def step(self):
