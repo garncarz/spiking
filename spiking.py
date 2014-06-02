@@ -6,7 +6,7 @@ class Net:
 	neuronCount = 10
 	synapsisCount = 20
 
-	def init(self):
+	def __init__(self):
 		self.weights = np.zeros((self.neuronCount, self.neuronCount))
 		for i in range(self.synapsisCount):
 			self.weights[rnd.randint(self.neuronCount)] \
