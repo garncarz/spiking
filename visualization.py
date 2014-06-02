@@ -1,5 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+from matplotlib import animation
 
 class NetVisualization:
 
@@ -17,10 +18,20 @@ class NetVisualization:
 		#self.pos = nx.spring_layout(self.graph)
 	
 	
-	def show(self):	
+	def draw(self):
 		values = [self.net.values[node] for node in self.graph.nodes()]
 		plt.clf()
 		nx.draw(self.graph, pos = self.pos,
 			cmap = plt.get_cmap("Purples"), node_color = values)
-		plt.show()
+	
+	def drawNext(self):
+		self.net.step()
+		self.draw()
+
+	
+	def createGif(self, filename):
+		fig = plt.figure()
+		anim = animation.FuncAnimation(fig, lambda i: self.drawNext(),
+			frames = 10)
+		anim.save(filename, writer = "imagemagick", fps = 1)
 
